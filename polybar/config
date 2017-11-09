@@ -1,0 +1,363 @@
+
+[colors]
+background = #3f3f3f
+background-alt = #444
+foreground = #dcdccc
+foreground-alt = #dcdccc
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[bar/top]
+monitor = LVDS-1
+width = 100%
+height = 25
+offset-x = 0
+offset-y = 0
+bottom = false
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+
+border-bottom-size = 2
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = FontAwesome:size=12:weight=Regular;+3
+font-1 = Liberation Mono:size=11;+3
+font-2 = Liberation Mono:size=11:heavy:fontformat=truetype;-2
+
+modules-left = 
+modules-center = i3
+modules-right = volume wlan eth battery date powermenu
+
+[bar/bottom]
+monitor = LVDS-1
+width = 100%
+height = 25
+offset-x = 0
+offset-y = 0
+bottom = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+fixed-center = true
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+
+border-top-size = 2
+border-top-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = FontAwesome:size=11:weight=Regular
+font-1 = Liberation Mono:size=10
+font-2 = Liberation Mono:size=10:heavy:fontformat=truetype;-2
+
+modules-left = filesystem memory cpu temperature
+modules-center = xwindow
+modules-right =
+
+tray-position = right
+tray-transparent = false
+
+[module/xwindow]
+type = internal/xwindow
+label =  %title:0:100:...%
+label-underline = #60b48a
+
+[module/weather]
+type = custom/script
+exec = $HOME/.config/i3/IconicWeather.sh 351197
+interval = 300
+label = %output%
+label-underline = ${colors.primary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+;label-mounted =   %mountpoint%:%percentage_free%
+label-mounted =   %mountpoint%:%percentage_free%
+label-mounted-underline = #60b48a
+label-unmounted =   %mountpoint%: not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/bspwm]
+type = internal/bspwm
+;ws-icon-default = 
+ws-icon-1 = comm  
+ws-icon-2 = browse  
+ws-icon-3 = term  
+ws-icon-4 = work 
+ws-icon-5 = music 
+ws-icon-6 = media  
+ws-icon-7 = rndm  
+ws-icon-8 = VIII
+ws-icon-9 = IX
+ws-icon-0 = X
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+
+ws-icon-0 = 1;♚
+ws-icon-1 = 2;♛
+ws-icon-2 = 3;♜
+ws-icon-3 = 4;♝
+ws-icon-4 = 5;♞
+;ws-icon-default = ♟
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused = 
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-padding = 2
+
+label-unfocused = 
+label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+
+label-urgent = 
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+icon-prev = 
+icon-seekb = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-seekf = 
+
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground = ${colors.primary}
+toggle-off-foreground = #66
+
+[module/backlight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = │
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+;label =  %percentage%
+label =   %percentage%
+format-underline = #60b48a
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #60b48a
+;label =  %percentage_used%
+label =  %percentage_used%
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #60b48a
+format-disconnected-underline = #60b48a
+
+label-connected = %essid%
+label-disconnected =   disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-underline = #60b48a
+format-connected-prefix = " "
+format-connected-foreground-foreground = ${colors.foreground-alt}
+;label-connected = %local_ip%
+label-connected = 
+
+format-disconnected-underline = #60b48a
+;label-disconnected = %ifname% disconnected
+label-disconnected = 
+label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =   %H:%M   %Y/%m/%d
+date-alt =   %H:%M   %A
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #60b48a
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+format-volume-padding = 2
+format-volume-underline = #60b48a
+format-muted-padding = 2
+format-muted-underline = #60b48a
+label-volume =  %percentage%
+label-muted = 
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 98
+time-format = %H:%M
+
+label-charging = %percentage% / %time%
+format-charging =   <label-charging>
+format-charging-underline = #60b48a
+
+label-discharging = %percentage% / %time%
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = #60b48a
+
+format-full = <label-full>
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = #60b48a
+
+ramp-capacity-0 = 
+ramp-charging-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format = <ramp> <label>
+format-underline = #60b48a
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label =  %temperature%
+label-warn =  %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+;ramp-foreground = #55
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-open-underline = #60b48a
+label-close =  cancel
+label-close-foreground = ${colors.foreground}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 =  reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 =   power off
+menu-0-1-exec = menu-open-2
+menu-0-2 =   suspend
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = cancel
+menu-3-0-exec = menu-open-0
+menu-3-1 = suspend
+menu-3-1-exec = i3lock -c 000000 && systemctl suspend

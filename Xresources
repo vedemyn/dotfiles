@@ -1,0 +1,73 @@
+URxvt.font: xft:Inconsolata:size=12 
+! above line must be first so vim font increase works
+URxvt.perl-ext-common:  default,matcher,font-size
+URxvt.urlLauncher:      qutebrowser
+URxvt.matcher.button:   1
+URxvt.iso14755:         false
+URxvt.scrollBar: 	false
+urxvt*secondaryScroll:  true
+urxvt*cursorBlink:      true
+
+
+! Cursor
+urxvt*cursorColor: #DCDCCC
+! URLs
+urxvt*.colorUL:    #ffffff
+
+! Zenburn color-scheme
+urxvt*background:  #3f3f3f
+urxvt*foreground:  #dcdccc
+! black + red
+urxvt*color0:      #1E2320
+urxvt*color1:      #705050
+! green + yellow
+urxvt*color2:      #60b48a
+urxvt*color3:      #dfaf8f
+! blue + purple
+urxvt*color4:      #506070
+urxvt*color5:      #dc8cc3
+! cyan + white
+urxvt*color6:      #8cd0d3
+urxvt*color7:      #dcdccc
+! bright-black + bright-red
+urxvt*color8:      #709080
+urxvt*color9:      #dca3a3
+! bright-green + bright-yellow
+urxvt*color10:     #c3bf9f
+urxvt*color11:     #f0dfaf
+! bright-blue + bright-purple
+urxvt*color12:     #94bff3
+urxvt*color13:     #ec93d3
+! bright-cyan + bright-white
+urxvt*color14:     #93e0e3
+urxvt*color15:     #ffffff
+
+
+
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
+
+! rofi -- dmenu clone
+rofi.opacity:  100
+rofi.width:    60
+rofi.lines:    1
+rofi.columns:  10
+rofi.font:     Inconsolata 12
+rofi.location: 0
+rofi.padding:  1
+
+rofi.color-enabled: true
+rofi.color-window: #3F3F3F,#000000
+
+! State:           bg,     fg,     bgalt   hlbg,   hlfg
+! zenburn:         bg,     fg,     bg-05,  bg+1,   fg+1
+rofi.color-normal: #3F3F3F,#DCDCCC,#383838,#4F4F4F,#FFFFEF
+!                  blue-4, fg,     blue-5, blue-3, fg+1
+rofi.color-active: #4C7073,#DCDCCC,#366060,#5C888B,#FFFFEF
+!                  red-4,  fg,     red-5,  red-3,  fg+1
+rofi.color-urgent: #8C5353,#DCDCCC,#7C4343,#9C6363,#FFFFEF
